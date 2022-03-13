@@ -107,7 +107,7 @@ namespace Mart_13_HW
 
             foreach (var item in Enum.GetValues(typeof(Genres)))
             {
-                Console.WriteLine($"{(int)item} -- {item}");
+                Console.WriteLine($"{(int)item} -- {item.ToString().Replace('_', ' ')}");
             }
 
             string genrestr = Console.ReadLine();
@@ -139,7 +139,7 @@ namespace Mart_13_HW
 
             foreach (var item in Enum.GetValues(typeof(Genres)))
             {
-                Console.WriteLine($"{(int)item} -- {item}");
+                Console.WriteLine($"{(int)item} -- {item.ToString().Replace('_', ' ')}");
             }
 
             Console.WriteLine("Write Down the number of Genre from GenresList that you see upper:");
@@ -147,9 +147,10 @@ namespace Mart_13_HW
             string genrestr = Console.ReadLine();
             int genreint;
 
-            while (int.TryParse(genrestr, out genreint) || genreint < 1 || genreint > 5)
+            while (!int.TryParse(genrestr, out genreint) || genreint < 1 || genreint > 5)
             {
                 Console.WriteLine("Choose from range 1 to 5");
+                genrestr = Console.ReadLine();
             }
 
             Genres genre = (Genres)genreint;

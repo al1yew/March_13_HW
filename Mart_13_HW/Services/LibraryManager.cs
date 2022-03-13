@@ -28,7 +28,17 @@ namespace Mart_13_HW.Services
         {
             if (_books.Count > 0)
             {
-                return _books.FindAll(books => books.Author == author && books.Genre == genre);
+                foreach (var item in _books)
+                {
+                    if (author == item.Author || genre == item.Genre)
+                    {
+                        return _books.FindAll(books => books.Author == author && books.Genre == genre);
+                    }
+                    else
+                    {
+                        throw new BookNotFoundException($"Your input cannot be found in system. Add books first of all.");
+                    }
+                }
             }
             throw new BookNotFoundException($"Your input cannot be found in system. Add books first of all.");
         }
@@ -36,10 +46,13 @@ namespace Mart_13_HW.Services
         {
             if (_books.Count > 0)
             {
-                return _books.FindAll(books => books.Name.ToUpper().Contains(input) || books.Author.ToUpper().Contains(input) ||
-                books.PageCount.ToString().Contains(input) || books.Genre.ToString().ToUpper().Contains(input));
+                return _books.FindAll(books => books.Name.ToUpper().Contains(input.ToUpper()) || books.Author.ToUpper().Contains(input.ToUpper()) ||
+                books.PageCount.ToString().Contains(input.ToUpper()) || books.Genre.ToString().ToUpper().Contains(input.ToUpper()));
             }
-            throw new BookNotFoundException($"Your input - {input} cannot be found in system. Add books first of all.");
+            else
+            {
+                throw new BookNotFoundException($"Your input - {input} cannot be found in system. Add books first of all.");
+            }
         }
         public Book ShowInfo(string name)
         {
