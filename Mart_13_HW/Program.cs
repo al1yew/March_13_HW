@@ -26,7 +26,7 @@ namespace Mart_13_HW
                 string userchoice = Console.ReadLine();
                 byte userchoicenum;
 
-                while (!byte.TryParse(userchoice, out userchoicenum) || userchoicenum < 1 || userchoicenum > 7)
+                while (!byte.TryParse(userchoice, out userchoicenum) || userchoicenum < 1 || userchoicenum > 6)
                 {
                     Console.WriteLine("\nYou need to choose numbers from 1 to 6 without using any other symbols.\nTry again\n");
                     userchoice = Console.ReadLine();
@@ -63,7 +63,7 @@ namespace Mart_13_HW
             {
                 foreach (var item in libraryManager.Books)
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine($"{item}\n");
                 }
             }
             else
@@ -73,6 +73,7 @@ namespace Mart_13_HW
         }
         static void AddBook(ref LibraryManager libraryManager)
         {
+            Console.WriteLine("\nWelcome to book adder!");
             Console.WriteLine("\nPlease write down name of Book that you are going to add:");
             string name = Console.ReadLine();
 
@@ -112,14 +113,15 @@ namespace Mart_13_HW
             string genrestr = Console.ReadLine();
             int genreint;
 
-            while (int.TryParse(genrestr, out genreint) || genreint < 1 || genreint > 5)
+            while (!int.TryParse(genrestr, out genreint) || genreint < 1 || genreint > 5)
             {
                 Console.WriteLine("Choose from range 1 to 5");
+                genrestr = Console.ReadLine();
             }
             Genres genre = (Genres)genreint;
 
             Book book = new Book(name, author, pages, genre);
-
+            Console.WriteLine("Success!");
             libraryManager.Add(book);
         }
         static void Filter(ref LibraryManager libraryManager)
@@ -152,20 +154,24 @@ namespace Mart_13_HW
 
             Genres genre = (Genres)genreint;
 
-            libraryManager.Filter(author, genre);
-            
+            foreach (var item in libraryManager.Filter(author, genre))
+            {
+                Console.WriteLine(item);
+            }
         }
         static void Search(ref LibraryManager librarymanager)
         {
             Console.WriteLine("Write name, author name, genre or pagecount of book that you are looking for.");
             string input = Console.ReadLine();
 
-            librarymanager.Search(input);
+            foreach (var item in librarymanager.Search(input))
+            {
+                Console.WriteLine(item);
+            }
         }
         static void ShowInfo(ref LibraryManager libraryManager)
         {
             Console.WriteLine("Write down name of book that you are looking for");
-
             string name = Console.ReadLine();
 
             Console.WriteLine($"{libraryManager.ShowInfo(name)}");

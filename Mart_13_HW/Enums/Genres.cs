@@ -6,10 +6,10 @@ namespace Mart_13_HW.Enums
 {
     enum Genres
     {
-        ROMANTIC = 1,
-        DETECTIVE,
-        ACTION,
-        DRAMA,
-        SCIENCEFICTION
+        Romantic = 1,
+        Detective,
+        Action,
+        Drama,
+        Science_Fiction
     }
 }

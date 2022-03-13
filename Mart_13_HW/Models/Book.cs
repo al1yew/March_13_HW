@@ -21,10 +21,10 @@ namespace Mart_13_HW.Models
         }
         public override string ToString()
         {
-            return $"Name: {Name}\n" +
-                $"Author: {Author}\n" +
+            return $"Name: {Name.ToUpper()}\n" +
+                $"Author: {Author.ToUpper()}\n" +
                 $"Page count: {PageCount}\n" +
-                $"Genre: {Genre}";
+                $"Genre: {Genre.ToString().Replace('_', ' ')}";
         }
     }
 }
