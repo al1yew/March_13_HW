@@ -16,7 +16,6 @@ namespace Mart_13_HW.Services
         {
             _books = new List<Book>();
         }
-
         public void Add(Book book)
         {
             if (_books.Exists(q => q.Name == book.Name))
@@ -25,7 +24,6 @@ namespace Mart_13_HW.Services
             } //else
             _books.Add(book);
         }
-
         public List<Book> Filter(string author, Genres genre)
         {
             if (_books.Count > 0)
@@ -34,7 +32,6 @@ namespace Mart_13_HW.Services
             }
             throw new BookNotFoundException($"Your input cannot be found in system. Add books first of all.");
         }
-
         public List<Book> Search(string input)
         {
             if (_books.Count > 0)
@@ -44,7 +41,6 @@ namespace Mart_13_HW.Services
             }
             throw new BookNotFoundException($"Your input - {input} cannot be found in system. Add books first of all.");
         }
-
         public Book ShowInfo(string name)
         {
             Book book = _books.Find(book => book.Name == name);
