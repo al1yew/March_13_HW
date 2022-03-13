@@ -161,7 +161,14 @@ namespace Mart_13_HW
             string input = Console.ReadLine();
 
             librarymanager.Search(input);
-            
+        }
+        static void ShowInfo(ref LibraryManager libraryManager)
+        {
+            Console.WriteLine("Write down name of book that you are looking for");
+
+            string name = Console.ReadLine();
+
+            Console.WriteLine($"{libraryManager.ShowInfo(name)}");
         }
     }
 }
