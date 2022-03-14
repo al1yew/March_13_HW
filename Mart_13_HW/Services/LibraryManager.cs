@@ -21,7 +21,7 @@ namespace Mart_13_HW.Services
             if (_books.Exists(q => q.Name == book.Name))
             {
                 throw new SameBookIsAlreadyAddedExpection($"{book.Name} cannot be added due to fact of existence of same named book.");
-            } //else
+            }
             _books.Add(book);
         }
         public List<Book> Filter(string author, Genres genre)
@@ -56,7 +56,7 @@ namespace Mart_13_HW.Services
         }
         public Book ShowInfo(string name)
         {
-            Book book = _books.Find(book => book.Name == name);
+            Book book = _books.Find(book => book.Name.ToUpper() == name.ToUpper());
             if (book != null)
             {
                 return book;
